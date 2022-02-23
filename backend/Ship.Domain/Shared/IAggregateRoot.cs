@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Sheap.Domain.Shared
+namespace Ship.Domain.Shared
 {
 	public interface IAggregateRoot
 	{

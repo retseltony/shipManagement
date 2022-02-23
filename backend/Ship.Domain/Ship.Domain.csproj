@@ -9,13 +9,13 @@
   <ItemGroup>
     <None Remove="Exceptions\" />
     <None Remove="Aggregates\" />
-    <None Remove="Aggregates\SheapAggregate\" />
+    <None Remove="Aggregates\ShipAggregate\" />
     <None Remove="Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
     <Folder Include="Aggregates\" />
-    <Folder Include="Aggregates\SheapAggregate\" />
+    <Folder Include="Aggregates\ShipAggregate\" />
     <Folder Include="Shared\" />
   </ItemGroup>
 </Project>
