@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ship.Domain", "Ship.Domain\Ship.Domain.csproj", "{A513C2E3-2056-4A2B-AE0F-FE20EE04C9E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ships.Domain", "Ships.Domain\Ships.Domain.csproj", "{A513C2E3-2056-4A2B-AE0F-FE20EE04C9E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ship.Infrastructure", "Ship.Infrastructure\Ship.Infrastructure.csproj", "{52A73EF3-B857-4414-8143-B85B1B13A747}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ships.Infrastructure", "Ships.Infrastructure\Ships.Infrastructure.csproj", "{52A73EF3-B857-4414-8143-B85B1B13A747}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ship.Application", "Ship.Application\Ship.Application.csproj", "{CA73FD55-408C-4C1D-880C-B841FED15567}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ships.Application", "Ships.Application\Ships.Application.csproj", "{CA73FD55-408C-4C1D-880C-B841FED15567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ship.API", "Ship.API\Ship.API.csproj", "{B47DF9A3-C405-455E-AD9E-9DFAFD9BA620}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ships.API", "Ships.API\Ships.API.csproj", "{B47DF9A3-C405-455E-AD9E-9DFAFD9BA620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,16 +6,16 @@ using Ships.Domain.ValueObjects;
 
 namespace Ships.Application.Commands
 {
-    public class UpdateShipCommandHandler : IRequestHandler<UpdateShipCommand, string>
+	public class CreateShipCommandHandler : IRequestHandler<CreateShipCommand, string>
 	{
         readonly ShipCreator ShipCreator;
 
-        public UpdateShipCommandHandler( ShipCreator shipCreator)
+        public CreateShipCommandHandler( ShipCreator shipCreator)
 		{
             ShipCreator = shipCreator;
         }
 
-        public async Task<string> Handle(UpdateShipCommand command, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateShipCommand command, CancellationToken cancellationToken)
         {
             await ShipCreator.Run(
                 ShipId.FromString(command.Id),
@@ -24,7 +24,7 @@ namespace Ships.Application.Commands
                 ShipWidth.From(command.Width),
                 ShipCode.From(command.Code)
              );
-            return "The ship has been updated!";
+            return "The ship has been created!";
         }
     }
 }

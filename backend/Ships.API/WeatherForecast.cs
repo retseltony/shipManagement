@@ -1,4 +1,4 @@
-namespace Ship.API;
+namespace Ships.API;
 
 public class WeatherForecast
 {

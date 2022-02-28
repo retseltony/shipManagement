@@ -1,16 +1,16 @@
-﻿using System;
-using System.Linq.Expressions;
-using Ship.Domain.Shared;
+﻿using System.Linq.Expressions;
 
-namespace Ship.Domain
+namespace Ships.Domain
 {
-    public interface IRepository<T> where T : IAggregateRoot
+    public interface IRepository<T> 
     {
-        void Add( T entity);
+        void Add(T entity);
 
         void Update(T entity);
 
-        Task<bool> Delete(Guid id);
+        Task Delete(Guid id);
+
+        Task Delete(T entity);
 
         Task<T> SearchById(Guid id);
 

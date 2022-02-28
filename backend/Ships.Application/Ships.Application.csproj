@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Commands\" />
+    <None Remove="Commands\CreateShip\" />
+    <None Remove="Commands\UpdateShip\" />
+    <None Remove="Commands\DeleteShip\" />
+    <None Remove="UseCases\" />
+    <None Remove="MediatR" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Commands\CreateShip\" />
+    <Folder Include="Commands\UpdateShip\" />
+    <Folder Include="Commands\DeleteShip\" />
+    <Folder Include="UseCases\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ships.Domain\Ships.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+  </ItemGroup>
+</Project>

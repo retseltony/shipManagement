@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Ship.API": {
+    "Ships.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

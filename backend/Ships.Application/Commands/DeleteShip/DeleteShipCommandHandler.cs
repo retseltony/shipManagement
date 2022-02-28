@@ -1,28 +1,30 @@
-﻿using System;
-using Ships.Application.UseCases;
-using Ships.Domain.Shared;
-using Ships.Domain.ValueObjects;
+﻿using MediatR;
+using Ships.Application.Commands.DeleteShip;
+using Ships.Domain.Aggregates.ShipAggregate;
 
 namespace Ships.Application.Commands
 {
-	public class CreateShipCommandHandler : ICommandHandler<CreateShipCommand>
-	{
-        readonly ShipCreator ShipCreator;
-
-        public CreateShipCommandHandler( ShipCreator shipCreator)
-		{
-            ShipCreator = shipCreator;
+    public class DeleteShipCommandHandler : IRequestHandler<DeleteShipCommand, String>
+    {
+        private readonly IShipRepository ShipRepository;
+        public DeleteShipCommandHandler(IShipRepository shipRepository)
+        {
+            ShipRepository = shipRepository;
         }
 
-        public async void Handle(CreateShipCommand command)
+        public async Task<string> Handle(DeleteShipCommand request, CancellationToken cancellationToken)
         {
-            await ShipCreator.Run(
-                ShipId.From(Guid.Parse(command.Id)),
-                ShipName.From(command.Name),
-                ShipLength.From(command.Length),
-                ShipWidth.From(command.Width),
-                ShipCode.From(command.Code)
-             );
+            try
+            {
+                var ship = await ShipRepository.SearchById(request.Id.Value);
+                await ShipRepository.Delete(ship);
+            }
+            catch (Exception exp)
+            {
+                throw (new ApplicationException(exp.Message));
+            }
+
+            return  "The ship has been deleted!";
         }
     }
 }
