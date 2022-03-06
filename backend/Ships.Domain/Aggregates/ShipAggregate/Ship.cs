@@ -1,4 +1,4 @@
-﻿using Ships.Domain.ValueObjects;
+﻿using Ships.Domain.Aggregates.ShipAggregate.ValueObjects;
 
 namespace Ships.Domain.Aggregates.ShipAggregate
 {

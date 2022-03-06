@@ -1,16 +1,13 @@
-﻿using System;
-using MediatR;
-using Ships.Application.UseCases;
-using Ships.Domain.Aggregates.ShipAggregate;
-using Ships.Domain.ValueObjects;
+﻿using MediatR;
+using Ships.Domain.Aggregates.ShipAggregate.ValueObjects;
 
 namespace Ships.Application.Commands
 {
 	public class CreateShipCommandHandler : IRequestHandler<CreateShipCommand, string>
 	{
-        readonly ShipCreator ShipCreator;
+        readonly IShipCreator ShipCreator;
 
-        public CreateShipCommandHandler( ShipCreator shipCreator)
+        public CreateShipCommandHandler(IShipCreator shipCreator)
 		{
             ShipCreator = shipCreator;
         }
@@ -22,7 +19,8 @@ namespace Ships.Application.Commands
                 ShipName.From(command.Name),
                 ShipLength.From(command.Length),
                 ShipWidth.From(command.Width),
-                ShipCode.From(command.Code)
+                ShipCode.From(command.Code),
+                cancellationToken
              );
             return "The ship has been created!";
         }

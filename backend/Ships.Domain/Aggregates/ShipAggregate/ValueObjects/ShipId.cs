@@ -1,7 +1,7 @@
 ﻿using System;
 using ValueOf;
 
-namespace Ships.Domain.ValueObjects
+namespace Ships.Domain.Aggregates.ShipAggregate.ValueObjects
 {
 	public class ShipId : ValueOf<Guid, ShipId>
 	{

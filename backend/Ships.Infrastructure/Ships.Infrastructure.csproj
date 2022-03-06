@@ -9,11 +9,22 @@
   <ItemGroup>
     <None Remove="Persistence\" />
     <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="EntityFramework" />
+    <None Remove="Persistence\EntityConfigurations\" />
+    <None Remove="Persistence\Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Persistence\" />
+    <Folder Include="Persistence\EntityConfigurations\" />
+    <Folder Include="Persistence\Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ships.Domain\Ships.Domain.csproj" />
   </ItemGroup>
 </Project>

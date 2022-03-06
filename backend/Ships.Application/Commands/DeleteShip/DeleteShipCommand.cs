@@ -1,14 +1,14 @@
 ﻿using System;
 using MediatR;
-using Ships.Domain.ValueObjects;
+using Ships.Domain.Aggregates.ShipAggregate.ValueObjects;
 
-namespace Ships.Application.Commands.DeleteShip
+namespace Ships.Application.Commands
 {
-	public class UpdateShipCommand : IRequest<string>
+	public class DeleteShipCommand : IRequest<string>
 	{
 		public ShipId Id { get; private set; }
 
-		public UpdateShipCommand(string id)
+		public DeleteShipCommand(string id)
 		{
 			Id = ShipId.FromString(id);
 		}

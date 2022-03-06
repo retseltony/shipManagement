@@ -1,31 +1,28 @@
 ﻿using MediatR;
-using Ships.Application.Commands.DeleteShip;
-using Ships.Domain.Aggregates.ShipAggregate;
+
 
 namespace Ships.Application.Commands
 {
-    public class DeleteShipCommandHandler : IRequestHandler<DeleteShipCommand, String>
+    public class DeleteShipCommandHandler : IRequestHandler<DeleteShipCommand, string>
     {
-        private readonly IShipRepository ShipRepository;
-        public DeleteShipCommandHandler(IShipRepository shipRepository)
-        {
-            ShipRepository = shipRepository;
-        }
+        readonly IShipDeletor ShipDeletor;
+        public DeleteShipCommandHandler(IShipDeletor shipDeletor) => ShipDeletor = shipDeletor;
 
-        public async Task<string> Handle(DeleteShipCommand request, CancellationToken cancellationToken)
+        public Task<string> Handle(DeleteShipCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                var ship = await ShipRepository.SearchById(request.Id.Value);
-                await ShipRepository.Delete(ship);
+                ShipDeletor.Run(command.Id, cancellationToken);
             }
             catch (Exception exp)
             {
                 throw (new ApplicationException(exp.Message));
             }
 
-            return  "The ship has been deleted!";
+            return Task.FromResult("The ship has been deleted!");
         }
+
+        
     }
 }
 

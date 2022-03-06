@@ -1,28 +1,27 @@
-﻿using System;
-using MediatR;
-using Ships.Application.UseCases;
-using Ships.Domain.Aggregates.ShipAggregate;
-using Ships.Domain.ValueObjects;
+﻿using MediatR;
+using Ships.Domain.Aggregates.ShipAggregate.ValueObjects;
 
 namespace Ships.Application.Commands
 {
     public class UpdateShipCommandHandler : IRequestHandler<UpdateShipCommand, string>
 	{
-        readonly ShipCreator ShipCreator;
+        readonly IShipUpgrader ShipUpgrader;
 
-        public UpdateShipCommandHandler( ShipCreator shipCreator)
-		{
-            ShipCreator = shipCreator;
+        public UpdateShipCommandHandler(IShipUpgrader shipUpgrader)
+        {
+            ShipUpgrader = shipUpgrader;
+
         }
 
         public async Task<string> Handle(UpdateShipCommand command, CancellationToken cancellationToken)
         {
-            await ShipCreator.Run(
+            await ShipUpgrader.Run(
                 ShipId.FromString(command.Id),
                 ShipName.From(command.Name),
                 ShipLength.From(command.Length),
                 ShipWidth.From(command.Width),
-                ShipCode.From(command.Code)
+                ShipCode.From(command.Code),
+                cancellationToken
              );
             return "The ship has been updated!";
         }

@@ -11,20 +11,27 @@
     <None Remove="Commands\CreateShip\" />
     <None Remove="Commands\UpdateShip\" />
     <None Remove="Commands\DeleteShip\" />
-    <None Remove="UseCases\" />
     <None Remove="MediatR" />
+    <None Remove="Queries\" />
+    <None Remove="Queries\GetAll\" />
+    <None Remove="AutoMapper" />
+    <None Remove="Queries\GetAll\GetAll\" />
+    <None Remove="Queries\GetById\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Commands\CreateShip\" />
     <Folder Include="Commands\UpdateShip\" />
     <Folder Include="Commands\DeleteShip\" />
-    <Folder Include="UseCases\" />
+    <Folder Include="Queries\" />
+    <Folder Include="Queries\GetAll\" />
+    <Folder Include="Queries\SearchById\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ships.Domain\Ships.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
   </ItemGroup>
 </Project>

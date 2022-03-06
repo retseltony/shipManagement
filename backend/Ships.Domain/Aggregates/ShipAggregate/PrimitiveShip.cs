@@ -2,11 +2,11 @@
 {
     public class PrimitiveShip : IPrimitiveShip
     {
-        public string Id { get; init ; }
-        public string Name { get; init; }
-        public double Length { get; init; }
-        public double Width { get; init; }
-        public string Code { get; init; }
+        public string Id { get; set ; }
+        public string Name { get; set; }
+        public double Length { get; set; }
+        public double Width { get; set; }
+        public string Code { get; set; }
 
         public PrimitiveShip(string id, string name, double length, double width, string code)
         {

@@ -1,13 +1,13 @@
-﻿using Ships.Domain.ValueObjects;
+﻿using Ships.Domain.Aggregates.ShipAggregate.ValueObjects;
 
 namespace Ships.Domain.Aggregates.ShipAggregate
 {
     public interface IPrimitiveShip
     {
-        string Id { get; init; }
-        string Name { get; init; }
-        double Length { get; init; }
-        double Width { get; init; }
-        string Code { get; init; }
+        string Id { get; set; }
+        string Name { get; set; }
+        double Length { get; set; }
+        double Width { get; set; }
+        string Code { get; set; }
     }
 }

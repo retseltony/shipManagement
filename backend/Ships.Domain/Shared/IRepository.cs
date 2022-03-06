@@ -4,19 +4,19 @@ namespace Ships.Domain
 {
     public interface IRepository<T> 
     {
-        void Add(T entity);
+        void Add(T entity, CancellationToken cancellationToken );
 
-        void Update(T entity);
+        void Update(T entity, CancellationToken cancellationToken );
 
-        Task Delete(Guid id);
+        void Delete(T entity, CancellationToken cancellationToken );
 
-        Task Delete(T entity);
+        Task<T?> SearchById(Guid id, CancellationToken cancellationToken );
 
-        Task<T> SearchById(Guid id);
+        Task<List<T>> List(CancellationToken cancellationToken);
 
-        IEnumerable<T> SearchByCriteria(Expression<Func<T, bool>> where);
-        Task<int> Count(Expression<Func<T, bool>> where);
-        Task<int> Count();
+        Task<List<T>> SearchByCriteria(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken );
+        Task<int> Count(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken );
+        Task<int> Count(CancellationToken cancellationToken );
 
     }
 }
