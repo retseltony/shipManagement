@@ -14,7 +14,7 @@ namespace Ships.Application.Commands
 
         public async void Run(ShipId id, CancellationToken cancellationToken)
         {
-            var ship = await UnitOfWork.Ships.SearchById(id.Value, cancellationToken);
+            var ship = await UnitOfWork.Ships.SearchById(id, cancellationToken);
             if (ship != null)
                 UnitOfWork.Ships.Delete(ship, cancellationToken);
         }

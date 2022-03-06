@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Ships.Application.Commands;
 using Ships.Application.Queries;
 using Ships.Domain.Aggregates.ShipAggregate;
+using Ships.Domain.Aggregates.ShipAggregate.ValueObjects;
 using Ships.Domain.Exceptions;
 
 namespace Ships.API.Controllers
@@ -46,8 +47,8 @@ namespace Ships.API.Controllers
 				var ship = await _mediator.Send(new SearchByIdQuery(id));
 				return Ok(ship);
 			}
-			catch (ShipNotFound e)
-			{
+			catch (ShipNotFound)
+            {
 				return NotFound();
 			}
 			catch (Exception e)
@@ -67,6 +68,36 @@ namespace Ships.API.Controllers
 				return Content(e.Message);
 			}
 			
+		}
+
+		[HttpPut("{id}",Name = "Update ship")]
+		public async Task<ActionResult> PutAsync([Bind("id,name, length, width, code")] PrimitiveShip ship)
+		{
+			try
+			{
+				var response = await _mediator.Send(new UpdateShipCommand(ship.Id, ship.Name, ship.Length, ship.Width, ship.Code));
+				return Content(response);
+			}
+			catch (Exception e)
+			{
+				return Content(e.Message);
+			}
+
+		}
+
+		[HttpDelete("{id}", Name = "Delete ship")]
+		public async Task<ActionResult> DeleteAsync(string id)
+		{
+			try
+			{
+				var response = await _mediator.Send(new DeleteShipCommand(id));
+				return Content(response);
+			}
+			catch (Exception e)
+			{
+				return Content(e.Message);
+			}
+
 		}
 	}
 }
