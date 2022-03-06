@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  backend:
+    image: retseltony/ship-management-api
+    build:
+      context: ./backend
+      dockerfile: Ships.API/Dockerfile
+    ports:
+      - "5080:80"
+      - "5443:5443"
+    restart: on-failure

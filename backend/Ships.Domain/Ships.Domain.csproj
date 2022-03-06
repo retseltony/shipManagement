@@ -22,6 +22,6 @@
     <Folder Include="Aggregates\ShipAggregate\ValueObjects\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ValueOf" Version="2.0.27" />
+    <PackageReference Include="ValueOf" Version="2.0.31" />
   </ItemGroup>
 </Project>

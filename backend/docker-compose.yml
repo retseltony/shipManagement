@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  ships.api:
+    image: ${DOCKER_REGISTRY-}ships
+    build:
+      context: .
+      dockerfile: Ships.API/Dockerfile
+    ports:
+        - "5080:80"
+        - "5443:443"
