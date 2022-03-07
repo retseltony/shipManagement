@@ -14,11 +14,19 @@ export const useFormsInputs = (initialsValues: any)=>{
             ...values,
             [input]: ''
         })        
-    }   
+    }
+    const onClearAll = () => {
+        let cleanValues:{[key:string]:any} = {}
+        Object.keys(values).forEach(input=>{
+            cleanValues[input]=''
+        })
+        setValues({...cleanValues })        
+    } 
     return [
         values, 
         onChange,
-        onClear
+        onClear,
+        onClearAll
     ]
     
 } 

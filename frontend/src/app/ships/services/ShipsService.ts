@@ -1,5 +1,6 @@
 
 import axios, { AxiosResponse } from 'axios';
+import { Ship } from '../domain/Ship';
 
 
 
@@ -10,53 +11,31 @@ const axiosInstance = axios.create({
     headers: {"Access-Control-Allow-Origin": "*"}
   });
 
-export const getAllShips = async (): Promise<any> =>{
-
+export const getAllShips = async (): Promise<AxiosResponse> =>{
     const response: AxiosResponse= await axiosInstance.get('ships');  
     return response;
-  //const payload:Ship[] | string =  response.ok ? await response.text() : await response.json()
-  /*return new Promise((resolve, reject) => { resolve( {ok:true,payload:[
-    {
-        "id": "c804beb9-400f-4c5a-914a-75bd83c6ed35",
-        "name": "New ship",
-        "length": 10,
-        "width": 10,
-        "code": "AAAA-1111-A1"
-    },
-    {
-        "id": "84ae5080-5286-49f4-b366-ac7d4d85f854",
-        "name": "New ship2",
-        "length": 12,
-        "width": 10,
-        "code": "AABB-1111-A1"
-    }
-  ]})});*/
 }
 
-/*export const getShipById = async (id: string):Promise<Response>=>{
-    const response =  await fetch(`${SHIPS_API}/ships/${id}`)
+export const getShipById = async (id: string):Promise<AxiosResponse>=>{
+    const response =  await axiosInstance.get(`${SHIPS_API}/ships/${id}`)
     return response;
 }
 
-export const createShip = async (ship: Ship):Promise<Response> => {
-    const response = await fetch(`${SHIPS_API}/ships`, {
-        method: 'post',
-        body: JSON.stringify(ship),
-        headers: {'Content-Type': 'application/json'}
+export const createShip = async (ship: Ship):Promise<AxiosResponse> => {
+    const response : AxiosResponse = await axiosInstance.post('/ships', {
+        ...ship
     });
     return response;
 }
 
-export const updateShip = async (ship: Ship): Promise<Response>=>{
-    const response = await fetch(`${SHIPS_API}/ships/${ship.id}`, {
-        method: 'put',
-        body: JSON.stringify(ship),
-        headers: {'Content-Type': 'application/json'}
+export const updateShip = async (ship: Ship): Promise<AxiosResponse>=>{
+    const response = await axiosInstance.put(`${SHIPS_API}/ships/${ship.id}`, {
+        data: {ship}
     });
     return response;
 }
 
-export const deleteShip = async (id: string): Promise<Response>=>{
-    return await fetch(`${SHIPS_API}/ships/${id}`, { method: 'delete' });
-}*/
+export const deleteShip = async (id: string): Promise<AxiosResponse>=>{
+    return await axiosInstance(`${SHIPS_API}/ships/${id}`, { method: 'delete' });
+}
 

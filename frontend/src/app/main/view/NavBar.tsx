@@ -9,9 +9,7 @@ const NavBar = ()=>{
         <div className="collapse navbar-collapse" id="navbarColor01">
         <ul className="navbar-nav me-auto">
             <li className="nav-item">
-            <a className="nav-link active" >Welcome to the ships management App
-                <span className="visually-hidden">(current)</span>
-            </a>
+                <span className="nav-link active">Welcome to the ships management App</span>
             </li>
         </ul>
         {/*The search backend service is to be implemented*/}

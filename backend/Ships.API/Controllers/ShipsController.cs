@@ -58,14 +58,14 @@ namespace Ships.API.Controllers
 		}
 
         [HttpPost( Name = "Create ship")]
-		public async Task<ActionResult> PostAsync([Bind("name, length, width, code")] PrimitiveShip ship )
+		public async Task<ActionResult> PostAsync([Bind("id,name, length, width, code")] PrimitiveShip ship )
 		{
 			try {
-				var response = await _mediator.Send(new CreateShipCommand(Guid.NewGuid().ToString(), ship.Name, ship.Length, ship.Width, ship.Code));
+				var response = await _mediator.Send(new CreateShipCommand(ship.Id, ship.Name, ship.Length, ship.Width, ship.Code));
 				return Content(response);
 			}
 			catch (Exception e) {
-				return Content(e.Message);
+				return Problem(e.Message);
 			}
 			
 		}
@@ -80,7 +80,7 @@ namespace Ships.API.Controllers
 			}
 			catch (Exception e)
 			{
-				return Content(e.Message);
+				return Problem(e.Message);
 			}
 
 		}
@@ -95,7 +95,7 @@ namespace Ships.API.Controllers
 			}
 			catch (Exception e)
 			{
-				return Content(e.Message);
+				return Problem(e.Message);
 			}
 
 		}

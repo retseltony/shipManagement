@@ -1,16 +1,22 @@
-import React, { useState, useEffect, SyntheticEvent } from 'react';
+import React from 'react';
 import {  useNavigate } from 'react-router-dom';
-import { useFormsInputs } from '../../utils/useFormsInputs';
-import { Ship } from '../domain/Ship';
 
-const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange}:{shipCode:string,shipName:string,shipWidth:number,shipLength:number,handleChange:(event:any) => void}) => {
+type EditShipType = {
+    shipCode:string,
+    shipName:string,
+    shipWidth:number,
+    shipLength:number,
+    handleChange:(event:any) => void,
+    handleSubmit:(event:any) => void
+}
+const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange,handleSubmit}:EditShipType) => {
     const navigate = useNavigate();
 
     
 
     return (
         <div className="card border-primary m-4" >
-            <form >
+            <form onSubmit={handleSubmit} >
                 <div className="card-header">Manage ship</div>
                 <div className="card-body">
                     <div className="row">

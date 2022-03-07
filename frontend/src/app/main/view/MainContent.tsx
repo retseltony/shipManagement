@@ -1,8 +1,8 @@
 
 import { Suspense } from "react";
 import  { Routes, Route } from "react-router-dom";
-import EditContainer from "../../ships/infrastructure/ShipContainer";
-import ShipManagement from "../../ships/views/ShipManagement";
+import ShipController from "../../ships/controllers/ShipController";
+import ShipsController from "../../ships/controllers/ShipsController";
 import Loading from "./Loading";
 import NavBar from './NavBar'
 const MainContent=()=> {
@@ -13,9 +13,9 @@ const MainContent=()=> {
             <div className="content">
                 <Suspense fallback={<Loading />}>
                     <Routes>
-                        <Route path="/" element={<ShipManagement/>} />
-                        <Route path="/create" element={<EditContainer />} />
-                        <Route path="/edit" element={<EditContainer />} />
+                        <Route path="/" element={<ShipsController/>} />
+                        <Route path="/create" element={<ShipController />} />
+                        <Route path="/edit" element={<ShipController />} />
                     </Routes>    
                 </Suspense>
             </div>
