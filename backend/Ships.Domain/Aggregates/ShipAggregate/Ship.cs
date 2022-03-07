@@ -29,7 +29,7 @@ namespace Ships.Domain.Aggregates.ShipAggregate
 
 
         /**
-        * At this moment we are creating only the instance but in future implementations we can create the events supscriptions
+        * At this moment we are creating only the instance but in future implementations we can create the event subscriptions
         * Example ShipCreatedDomainEvent
         **/
         public static Ship Create(ShipId id, ShipName name, ShipLength length, ShipWidth width, ShipCode code) => new(id, name, length, width, code);
@@ -39,9 +39,3 @@ namespace Ships.Domain.Aggregates.ShipAggregate
             }
         }
 }
-
-
-/*
- name (string), length (in metres), width (in metres) and code (a string with a format of AAAA-1111-A1
-where A is any character from the Latin alphabet and 1 is a number from 0 to 9)
- */
