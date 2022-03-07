@@ -24,7 +24,7 @@ import { messageState } from "../../main/atoms/MessageAtoms";
         try {
             const ship = {
                 id: shipId || v4(),
-                code:shipCode,
+                code:shipCode.toUpperCase(),
                 name:shipName,
                 width:shipWidth,
                 length:shipLength

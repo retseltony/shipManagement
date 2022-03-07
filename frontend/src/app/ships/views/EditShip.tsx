@@ -12,9 +12,8 @@ type EditShipType = {
 
 const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange,handleSubmit}:EditShipType) => {
     const navigate = useNavigate();
-    
-    
-
+    const formIsValid =  (shipCode && shipName && shipWidth  && shipLength)  ? true:false;
+   
     return (
         <div className="card border-primary m-4" >
             <form onSubmit={handleSubmit} >
@@ -29,8 +28,9 @@ const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange,handleSub
                             />
                         </div>
                         <div className="form-group col m-5" >
-                            <label className="col-form-label float-start">Ship Code</label>
-                            <input type="text" className="form-control" placeholder="AAAA-1111-A1" id="shipCode" name="shipCode"
+                            <label className="col-form-label float-start"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Required pattern 'AAAA-1111-A1' -> A is a letter and 1 is a digit">Ship Code</label>
+                            <input type="text" className="form-control text-uppercase" placeholder="AAAA-1111-A1" id="shipCode" name="shipCode"
                                 onChange={(e)=>handleChange(e)}
                                 value={shipCode} />
                         </div>
@@ -48,12 +48,12 @@ const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange,handleSub
                             <div className='col m-5'>
                                 <label className="col-form-label">Length</label>
                                 <div className="input-group">
-                                    <input type="number" className="form-control" placeholder="249" id="shipLength" name="shipLength" 
+                                    <input type="number" className="form-control" placeholder="249" id="shipLength" name="shipLength"
                                     value={shipLength}
                                     onChange={(e)=>handleChange(e)}
                                     />
                                     <span className="input-group-text">meters</span>
-                                    <div className="invalid-feedback">Sorry, the ship length is invalid need to be greater than 0 and lower than 500?</div>
+                                    <div className="invalid-feedback">The ship length is invalid, it must be greater than 0 and lower than 500</div>
                                 </div>
                             </div>
                         </div>
@@ -63,8 +63,13 @@ const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange,handleSub
                     <div className='col m-5'>
                     </div>
                     <div className='col m-5 d-flex flex-row-reverse' >
-                        <button type="submit" className="btn btn-primary m-2" style={{ width: "50%" }}>Save</button>
-                        <button type="button" className="btn btn-secondary m-2" style={{ width: "50%" }} onClick={()=>navigate('/')}>Cancel</button>
+                        <button type="submit" className="btn btn-primary m-2" style={{ width: "50%" }}
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Submit the form and save the data"
+                        disabled={!formIsValid}
+                        >Save
+                        </button>
+                        <button type="button" className="btn btn-secondary m-2" style={{ width: "50%" }} onClick={()=>navigate('/')}
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel the action and go back to main page">Cancel</button>
                     </div>
                 </div>
             </form>

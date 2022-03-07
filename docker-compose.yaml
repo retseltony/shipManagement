@@ -10,3 +10,14 @@ services:
       - "5080:80"
       - "5443:5443"
     restart: on-failure
+  frontend:
+    image: retseltony/ship-management-frontend
+    build:
+      context: ./frontend
+      dockerfile: docker/Dockerfile
+    environment: 
+     - PORT=80
+     - SHIPS_API='http://localhost:5080'
+    ports:
+      - "3000:80"
+    restart: on-failure
