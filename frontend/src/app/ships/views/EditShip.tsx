@@ -9,9 +9,10 @@ type EditShipType = {
     handleChange:(event:any) => void,
     handleSubmit:(event:any) => void
 }
+
 const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange,handleSubmit}:EditShipType) => {
     const navigate = useNavigate();
-
+    
     
 
     return (
@@ -28,16 +29,16 @@ const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange,handleSub
                             />
                         </div>
                         <div className="form-group col m-5" >
-                            <label className="col-form-label">Ship Code</label>
+                            <label className="col-form-label float-start">Ship Code</label>
                             <input type="text" className="form-control" placeholder="AAAA-1111-A1" id="shipCode" name="shipCode"
                                 onChange={(e)=>handleChange(e)}
                                 value={shipCode} />
                         </div>
                         <div className="row">
                             <div className='col m-5'>
-                                <label className="col-form-label">Width</label>
+                                <label className="col-form-label ">Width</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="32" id="shipWidth" name="shipWidth"
+                                    <input type="number" className="form-control" placeholder="32" id="shipWidth" name="shipWidth"
                                     value={shipWidth}
                                     onChange={(e)=>handleChange(e)}
                                     />
@@ -45,13 +46,14 @@ const EditShip = ({shipCode,shipName,shipWidth,shipLength,handleChange,handleSub
                                 </div>
                             </div>
                             <div className='col m-5'>
-                                <label className="col-form-label">Lenght</label>
+                                <label className="col-form-label">Length</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="249" id="shipLength" name="shipLength" 
+                                    <input type="number" className="form-control" placeholder="249" id="shipLength" name="shipLength" 
                                     value={shipLength}
                                     onChange={(e)=>handleChange(e)}
                                     />
                                     <span className="input-group-text">meters</span>
+                                    <div className="invalid-feedback">Sorry, the ship length is invalid need to be greater than 0 and lower than 500?</div>
                                 </div>
                             </div>
                         </div>

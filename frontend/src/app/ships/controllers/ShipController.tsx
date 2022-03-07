@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import {  useRecoilState } from "recoil";
+import {  useRecoilState, useSetRecoilState } from "recoil";
 import { v4 } from "uuid";
 import { useFormsInputs } from "../../utils/useFormsInputs";
 import { Ship } from "../domain/Ship";
-import { createShip, updateShip } from "../services/ShipsService";
+import { createShipService, updateShipService } from "../services/ShipsService";
 import EditShip from "../views/EditShip";
 import {shipListState, shipSelected} from  "../atoms/ShipsAtoms"
 import { useNavigate } from "react-router-dom";
+import { timeoutMessage } from "../../main/view/AlertMessages";
+import { messageState } from "../../main/atoms/MessageAtoms";
 
 
  const ShipController = ( )=>{
     const [currentShip,setCurrentShip] = useRecoilState(shipSelected);
     const {id,code,name,width,length} = currentShip || {id:undefined,code:'',name:'',width:'',length:''}
-    const [ships,setShips] = useRecoilState<Ship[]>(shipListState);
+    const setShips = useSetRecoilState<Ship[]>(shipListState);
     const [shipId,setShipId] = useState(id)
     const [{ shipCode,shipName,shipWidth,shipLength }, handleChange, onClearAll] = useFormsInputs({ shipCode:code,shipName:name,shipWidth:width,shipLength:length })
+    const setMessage = useSetRecoilState(messageState);
     const navigate = useNavigate();
     let handleSubmit = async (onsubmitEvent:any) => {
         onsubmitEvent.preventDefault();
@@ -26,25 +29,24 @@ import { useNavigate } from "react-router-dom";
                 width:shipWidth,
                 length:shipLength
             }
-            const callApi = shipId ? updateShip : createShip
+            const callApi = shipId ? updateShipService : createShipService
             let response = await callApi(ship)
             
             if (response.status === 200) {
                 onClearAll()
-                setShips((oldShips)=>[...oldShips,ship])
+                setShips((oldShips)=>[...oldShips ??=[],ship])
                 setShipId(undefined)
                 setCurrentShip(undefined)
                 navigate("/")
-            } else {
-                alert(response.data)
-            }
+                timeoutMessage({type:"success",message:response.data,isHidden:false},setMessage)
+            } 
         } catch (err:any) {
             if(err.request){
                 const _error = JSON.parse(err.request.response) 
-                alert(_error.detail)
+                timeoutMessage({type:"error",message: _error.detail ,isHidden:false},setMessage)
             }
             else
-                alert(err.message)
+                timeoutMessage({type:"error",message: err.message ,isHidden:false},setMessage)
             
         }
     };

@@ -11,31 +11,32 @@ const axiosInstance = axios.create({
     headers: {"Access-Control-Allow-Origin": "*"}
   });
 
-export const getAllShips = async (): Promise<AxiosResponse> =>{
+export const getAllShipsService = async (): Promise<AxiosResponse> =>{
     const response: AxiosResponse= await axiosInstance.get('ships');  
     return response;
 }
 
-export const getShipById = async (id: string):Promise<AxiosResponse>=>{
-    const response =  await axiosInstance.get(`${SHIPS_API}/ships/${id}`)
+export const getShipByIdService = async (id: string):Promise<AxiosResponse>=>{
+    const response =  await axiosInstance.get(`/ships/${id}`)
     return response;
 }
 
-export const createShip = async (ship: Ship):Promise<AxiosResponse> => {
+export const createShipService = async (ship: Ship):Promise<AxiosResponse> => {
     const response : AxiosResponse = await axiosInstance.post('/ships', {
         ...ship
     });
     return response;
 }
 
-export const updateShip = async (ship: Ship): Promise<AxiosResponse>=>{
-    const response = await axiosInstance.put(`${SHIPS_API}/ships/${ship.id}`, {
-        data: {ship}
+export const updateShipService = async (ship: Ship): Promise<AxiosResponse>=>{
+    const response = await axiosInstance.put(`/ships/${ship.id}`, {
+        ...ship
     });
     return response;
 }
 
-export const deleteShip = async (id: string): Promise<AxiosResponse>=>{
-    return await axiosInstance(`${SHIPS_API}/ships/${id}`, { method: 'delete' });
+export const deleteShipService = async (id: string): Promise<AxiosResponse>=>{
+    const response = await axiosInstance.delete(`/ships/${id}`);
+    return response;
 }
 

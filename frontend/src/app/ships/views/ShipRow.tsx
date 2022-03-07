@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Ship } from '../domain/Ship';
-const ShipRow = ({ship,rowActive,currentShip,setCurrentShip}:{ship:Ship, rowActive:string | undefined ,currentShip:Ship | undefined,setCurrentShip:(value: any) => void })=>{
+import {  ShipRowType } from '../domain/Ship';
+
+const ShipRow = ({ship,rowActive,currentShip,setCurrentShip,deleteShip }:ShipRowType)=>{
     const active: string = ship.id === rowActive ? 'table-active': ''
     const navigate = useNavigate();
     const onEditClick = ()=>{
@@ -19,7 +20,9 @@ const ShipRow = ({ship,rowActive,currentShip,setCurrentShip}:{ship:Ship, rowActi
                 onClick={onEditClick}
             >
                 <i className="bi-pencil-square"></i></button>                
-            <button type="button" className="btn btn-outline-danger" style = {{marginLeft: "5%"}} data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Ship">
+            <button type="button" className="btn btn-outline-danger" style = {{marginLeft: "5%"}} data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Ship"
+                onClick={()=>deleteShip(ship.id)}
+            >
                 <i className="bi-trash-fill"></i></button>
             </td>
         </tr>

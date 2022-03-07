@@ -1,10 +1,16 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-import { Ship } from "../domain/Ship"
+import { NavLink, useNavigate } from "react-router-dom"
+import { Ship, ShipTableType } from "../domain/Ship"
 import ShipRow from "./ShipRow"
 
-const ShipTable =({ships,rowActive,currentShip, setCurrentShip}:{ships:Ship[],rowActive:string | undefined,setCurrentShip:(value: any) => void,currentShip:Ship | undefined})=>( 
-    <table className="table table-hover" key="ships">
+const ShipTable =({ships,rowActive,currentShip,hasShips, setCurrentShip,deleteShip}:ShipTableType)=>{
+  const navigate = useNavigate();
+  const handleOnAddClick =()=>{
+    setCurrentShip(undefined)
+    navigate("/create")
+  }
+  return( 
+    <table className="table table-hover" key="ships-table">
     <thead>
       <tr key="table-header">
         <th scope="col">Name</th>
@@ -12,24 +18,23 @@ const ShipTable =({ships,rowActive,currentShip, setCurrentShip}:{ships:Ship[],ro
         <th scope="col">Width</th>
         <th scope="col">Code</th>
         <th scope="col">
-        <NavLink to="/create">
           <button
             type="button"
             className="btn btn-outline-success"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Add new Ship"
+            onClick={handleOnAddClick}
           >
             <i className="bi-plus-lg"></i>
           </button>
-          </NavLink>
         </th>
       </tr>
     </thead>
     <tbody>
-      { ships.map((ship: Ship) => ( <ShipRow {...{ ship, rowActive,currentShip, setCurrentShip }} key={ship.id} />)) }
+      { hasShips && ships.map((ship: Ship) => ( <ShipRow {...{ ship, rowActive,currentShip, setCurrentShip,deleteShip }} key={ship.id} />)) }
     </tbody>
   </table>
-)
+)}
 
 export default ShipTable
