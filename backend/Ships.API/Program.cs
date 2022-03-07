@@ -25,6 +25,7 @@ builder.Services.AddScoped<IShipDeletor, ShipDeletor>();
 builder.Services.AddScoped<IShipsFinder, ShipsFinder>();
 builder.Services.AddScoped<IShipFinder, ShipFinder>();
 builder.Services.AddMediatR(typeof(GetAllShipsQuery).Assembly);
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -34,7 +35,9 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 //}
-
+app.UseCors(options=> options.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -42,3 +45,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
